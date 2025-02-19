@@ -1,6 +1,6 @@
-package lab4.practice1.domain;
+package lab4.practice.domain;
 
-import lab4.practice1.Employee;
+import lab4.practice.Employee;
 
 public class Engineer extends Employee {
     public Engineer(int empId, String name, String ssn, double salary) {

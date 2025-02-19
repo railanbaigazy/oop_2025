@@ -1,4 +1,4 @@
-package lab4.practice1;
+package lab4.practice;
 
 public class Employee {
     private final int id;

@@ -1,6 +1,6 @@
-package lab4.practice1.domain;
+package lab4.practice.domain;
 
-import lab4.practice1.Manager;
+import lab4.practice.Manager;
 
 public class Director extends Manager {
     private final double budget;

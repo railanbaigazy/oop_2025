@@ -1,8 +1,8 @@
-package lab4.practice1;
+package lab4.practice;
 
-import lab4.practice1.domain.Admin;
-import lab4.practice1.domain.Director;
-import lab4.practice1.domain.Engineer;
+import lab4.practice.domain.Admin;
+import lab4.practice.domain.Director;
+import lab4.practice.domain.Engineer;
 
 import java.text.NumberFormat;
 
@@ -34,6 +34,17 @@ public class EmployeeTest {
         printEmployee(engineer);
         printEmployee(admin);
 
-
+        System.out.println("====== Test Managers ======");
+        manager.addEmployee(engineer);
+        manager.addEmployee(admin);
+        manager.addEmployee(director);
+        System.out.println("Employee count: " + manager.getEmployeeCount());
+        System.out.println("Searching admin employee:");
+        System.out.println(manager.findEmployee(admin));
+        System.out.println("Removing engineer employee:");
+        System.out.println(manager.removeEmployee(engineer));
+        System.out.println("Searching admin employee:");
+        System.out.println(manager.findEmployee(admin));
+        System.out.println("Employee count: " + manager.getEmployeeCount());
     }
 }
