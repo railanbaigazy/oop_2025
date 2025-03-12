@@ -5,8 +5,6 @@ import lab5.domain.Admin;
 import lab5.domain.Director;
 import lab5.domain.Engineer;
 
-import java.text.NumberFormat;
-
 public class EmployeeTest {
     public static void printEmployee(Employee emp) {
         System.out.println("\nEmployee type: " + emp.getClass().getSimpleName());
