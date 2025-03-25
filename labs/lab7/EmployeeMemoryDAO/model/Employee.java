@@ -14,7 +14,6 @@ public class Employee {
     private Date birthDate;
     private float salary;
     // not thread-safe
-    private static Employee[] employeeArray = new Employee[10];
 
     public Employee() {
     }
@@ -53,34 +52,5 @@ public class Employee {
                 + "Employee Name: " + getFirstName() + " " + getLastName() + "\n"
                 + "Birth Date:    " + new SimpleDateFormat("MMM d, yyyy").format(getBirthDate()) + "\n"
                 + "Salary:        " + NumberFormat.getCurrencyInstance().format((double) getSalary());
-    }
-
-    // Save our Employee record
-    public void save() {
-        employeeArray[id] = this;
-    }
-
-    // Delete our employee record
-    public void delete() {
-        employeeArray[id] = null;
-    }
-
-    // Find an Employee record using this ID
-    public static Employee findById(int id) {
-        return employeeArray[id];
-    }
-
-    // Return an array of all of the Employee records
-    // We are using a collection List object to store the results
-    // This makes it easier to just add to the collection
-    public static Employee[] getAllEmployees() {
-        List<Employee> emps = new ArrayList<>();
-        // Iterate through the memory array and find Employee objects
-        for (Employee e : employeeArray) {
-            if (e != null) {
-                emps.add(e);
-            }
-        }
-        return emps.toArray(new Employee[0]);
     }
 }

@@ -4,7 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import com.example.model.Employee;
+import lab7.EmployeeMemoryDAO.dao.EmployeeDAO;
+import lab7.EmployeeMemoryDAO.dao.EmployeeDAOFactory;
+import lab7.EmployeeMemoryDAO.model.Employee;
 import java.util.Date;
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -13,18 +15,18 @@ import java.text.SimpleDateFormat;
 public class EmployeeTestInteractive {
 
     public static void main(String[] args) throws Exception {
-        //TODO create factory
+        EmployeeDAOFactory factory = new EmployeeDAOFactory();
 
         boolean timeToQuit = false;
 
-        //TODO create dao
+        EmployeeDAO dao = factory.createEmployeeDAO();
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         do {
-            timeToQuit = executeMenu(in);
+            timeToQuit = executeMenu(in, dao);
         } while (!timeToQuit);
     }
 
-    public static boolean executeMenu(BufferedReader in) throws IOException {
+    public static boolean executeMenu(BufferedReader in, EmployeeDAO dao) throws IOException {
         Employee emp;
         String action;
         int id;
@@ -39,7 +41,7 @@ public class EmployeeTestInteractive {
             // Create a new employee record
             case 'C':
                 emp = inputEmployee(in);
-                emp.save();
+                dao.add(emp);
                 System.out.println("Successfully added Employee Record: " + emp.getId());
                 System.out.println("\n\nCreated " + emp);
                 break;
@@ -47,10 +49,10 @@ public class EmployeeTestInteractive {
             // Display an employee record
             case 'R':
                 System.out.println("Enter int value for employee id: ");
-                id = new Integer(in.readLine().trim());
+                id = Integer.parseInt(in.readLine().trim());
 
                 // Find this Employee record
-                emp = Employee.findById(id);
+                emp = dao.findById(id);
                 if (emp != null) {
                     System.out.println(emp + "\n");
                 } else {
@@ -63,10 +65,10 @@ public class EmployeeTestInteractive {
             // Update an existing employee record    
             case 'U':
                 System.out.println("Enter int value for employee id: ");
-                id = new Integer(in.readLine().trim());
+                id = Integer.parseInt(in.readLine().trim());
                 // Find this Employee record
                 emp = null;
-                emp = Employee.findById(id);
+                emp = dao.findById(id);
                 if (emp == null) {
                     System.out.println("\n\nEmployee " + id + " not found");
                     break;
@@ -74,29 +76,29 @@ public class EmployeeTestInteractive {
                 // Go through the record to allow changes
 
                 emp = inputEmployee(in, emp);
-                emp.save();
+                dao.update(emp);
                 System.out.println("Successfully updated Employee Record: " + emp.getId());
                 break;
 
             // Delete an employee record
             case 'D':
                 System.out.println("Enter int value for employee id: ");
-                id = new Integer(in.readLine().trim());
+                id = Integer.parseInt(in.readLine().trim());
 
                 // Find this Employee record                 
                 emp = null;
-                emp = Employee.findById(id);
+                emp = dao.findById(id);
                 if (emp == null) {
                     System.out.println("\n\nEmployee " + id + " not found");
                     break;
                 }
-                emp.delete();
+                dao.delete(id);
                 System.out.println("Deleted Employee " + id);
                 break;
 
             // Display a list (Read the records) of Employees
             case 'L':
-                Employee[] allEmps = Employee.getAllEmployees();
+                Employee[] allEmps = dao.getAllEmployees();
                 for (Employee employee : allEmps) {
                     System.out.println(employee + "\n");
                 }
@@ -128,7 +130,7 @@ public class EmployeeTestInteractive {
             do {
                 System.out.println("Enter int value for employee id: ");
                 try {
-                    id = new Integer(in.readLine().trim());
+                    id = Integer.parseInt(in.readLine().trim());
                     if (id < 0) {
                         System.out.println("Please retry with a valid positive integer id");
                     }
