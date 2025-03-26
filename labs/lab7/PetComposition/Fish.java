@@ -1,8 +1,7 @@
 package lab7.PetComposition;
 
 public class Fish extends Animal implements Pet {
-
-    private String name;
+    private final Nameable nameable = new NameableImpl();
 
     public Fish() {
         super(0);
@@ -15,22 +14,16 @@ public class Fish extends Animal implements Pet {
 
     @Override
     public String getName() {
-        return name;
+        return nameable.getName();
     }
 
     @Override
     public void setName(String name) {
-        this.name = name;
+        nameable.setName(name);
     }
 
     @Override
     public void play() {
         System.out.println("Just keep swimming.");
-    }
-
-    @Override
-    public void walk() {
-        super.walk();
-        System.out.println("Fish, of course, can't walk; they swim.");
     }
 }

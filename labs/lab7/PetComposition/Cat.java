@@ -2,15 +2,17 @@ package lab7.PetComposition;
 
 public class Cat extends Animal implements Pet {
     
-    private String name;
-    
+    private final Nameable nameable = new NameableImpl();
+    private final Ambulatory ambulatory;
+
     public Cat() {
         this("Fluffy");
     }
     
     public Cat(String name) {
         super(4);
-        this.name = name;
+        ambulatory = new AmbulatoryImpl(4);
+        nameable.setName(name);
     }
 
     @Override
@@ -20,17 +22,21 @@ public class Cat extends Animal implements Pet {
 
     @Override
     public String getName() {
-        return name;
+        return nameable.getName();
     }
 
     @Override
     public void setName(String name) {
-        this.name = name;
+        nameable.setName(name);
     }
 
     @Override
     public void play() {
-        System.out.println(name + " likes to play with string.");
+        System.out.println(nameable.getName() + " likes to play with string.");
+    }
+
+    public void walk() {
+        ambulatory.walk();
     }
     
 }

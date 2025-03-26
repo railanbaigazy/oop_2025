@@ -11,7 +11,6 @@ public class PetMain {
         //test a spider with an animal reference
         a = new Spider();
         a.eat();
-        a.walk();
 
         Pet p;
 
@@ -21,7 +20,6 @@ public class PetMain {
         c.play();
         a = new Cat();
         a.eat();
-        a.walk();
         p = new Cat();
         p.setName("Mr. Whiskers");
         p.play();
@@ -29,12 +27,9 @@ public class PetMain {
         Fish f = new Fish();
         f.setName("Guppy");
         f.eat();
-        f.walk();
         f.play();
         a = new Fish();
         a.eat();
-        a.walk();
-
 
         playWithAnimal(s);
         playWithAnimal(c);
