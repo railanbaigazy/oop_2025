@@ -61,7 +61,7 @@ public class EmployeeTestInteractive {
             // Display an employee record
             case 'R':
                 System.out.println("Enter int value for employee id: ");
-                id = new Integer(in.readLine().trim());
+                id = Integer.parseInt(in.readLine().trim());
 
                 // Find this Employee record
                 emp = dao.findById(id);
@@ -77,7 +77,7 @@ public class EmployeeTestInteractive {
             // Update an existing employee record    
             case 'U':
                 System.out.println("Enter int value for employee id: ");
-                id = new Integer(in.readLine().trim());
+                id = Integer.parseInt(in.readLine().trim());
                 // Find this Employee record
                 emp = null;
                 emp = dao.findById(id);
@@ -95,7 +95,7 @@ public class EmployeeTestInteractive {
             // Delete an employee record
             case 'D':
                 System.out.println("Enter int value for employee id: ");
-                id = new Integer(in.readLine().trim());
+                id = Integer.parseInt(in.readLine().trim());
 
                 // Find this Employee record                 
                 dao.delete(id);
@@ -136,7 +136,7 @@ public class EmployeeTestInteractive {
             do {
                 System.out.println("Enter int value for employee id: ");
                 try {
-                    id = new Integer(in.readLine().trim());
+                    id = Integer.parseInt(in.readLine().trim());
                     if (id < 0) {
                         System.out.println("Please retry with a valid positive integer id");
                     }
